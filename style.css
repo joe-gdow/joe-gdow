@@ -20,6 +20,7 @@ body {
     font-size: 18px;
     color: #E5E7EB;
     display: flex;
+    gap: 20px;
 }
 
 .subhero {
@@ -37,16 +38,24 @@ body {
     font-weight: 1000;
     color: #F9FAF8;
 }
+
 .hero > div {
     color: #F9FAF8
 }
+
 .info {
     display: flex;
 }
+
 .info h3 {
     font-size: 36px;
     font-weight: 1000;
     color: #1F2937;
+}
+
+.cards {
+    display: flex;
+    justify-content: center;
 }
 
 .info img {
