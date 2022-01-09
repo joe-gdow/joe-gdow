@@ -1,7 +1,7 @@
 body {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+
 }
 
 .header, .hero, .footer {
@@ -9,13 +9,23 @@ body {
 }
 
 .header {
+    display: flex;
     font-size: 24px;
-    color: #F9FAF8; 
+    color: #F9FAF8;
+    justify-content: space-around;
+    align-items: baseline;
 }
 
-.header .nav {
+.links {
     font-size: 18px;
     color: #E5E7EB;
+    display: flex;
+}
+
+.subhero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .hero img {
@@ -27,15 +37,16 @@ body {
     font-weight: 1000;
     color: #F9FAF8;
 }
+.hero > div {
+    color: #F9FAF8
+}
 .info {
     display: flex;
-    justify-content: space-around;
 }
 .info h3 {
     font-size: 36px;
     font-weight: 1000;
     color: #1F2937;
-    flex-shrink: 0;
 }
 
 .info img {
@@ -81,4 +92,6 @@ body {
 
 ul {
     list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
