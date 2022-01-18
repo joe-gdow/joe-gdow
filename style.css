@@ -1,7 +1,12 @@
 body {
     display: flex;
     flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
 
+}
+
+button {
+    border-radius: 5px;
 }
 
 .header, .hero, .footer {
@@ -12,8 +17,17 @@ body {
     display: flex;
     font-size: 24px;
     color: #F9FAF8;
-    justify-content: space-around;
     align-items: baseline;
+    padding: 0 100px;
+    justify-content: space-between;
+}
+
+.header h3 {
+    justify-self: flex-start;
+}
+
+.header ul {
+    justify-self: flex-end;
 }
 
 .links {
@@ -27,10 +41,24 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 0 100px 50px 100px;
 }
 
-.hero img {
+.hero .left {
+    width: 50vw;
+}
+
+.hero .left > h2 {
+    margin-bottom: 0px;
+}
+.hero .left > div {
+    padding: 0;
+}
+
+.hero .right {
     background-color: #E5E7EB;
+    width: 50vw;
+    color: black;
 }
 
 .hero h2 {
@@ -45,17 +73,25 @@ body {
 
 .info {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0 100px;
 }
 
 .info h3 {
+    display: inherit;
     font-size: 36px;
     font-weight: 1000;
     color: #1F2937;
+    flex-shrink: 0;
 }
 
 .cards {
     display: flex;
     justify-content: center;
+    flex-wrap: nowrap;
+    gap: 20px;
+    text-align: center;
 }
 
 .info img {
@@ -71,20 +107,40 @@ body {
     font-size: 36px;
     font-style: italic;
     color: #1F2937;
-    align-items: center;
-    justify-content: center;
+    padding: 100px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
 }
 
-.quote span {
+#byline {
     color: black;
+    font-weight: bold;
     font-style: normal;
-    font-weight: 1000px;
-    align-self: flex-end;
+    padding: 15px 0 0 0;
 }
 
 .signup {
+    display: flex;
     background-color: #3882F6;
     color: white;
+    margin: 50px;
+    border-radius: 10px;
+    align-items: baseline;
+    justify-content: space-between;
+}
+
+.signup .text {
+    flex-flow: column nowrap;
+}
+
+.signup button {
+    background-color: #3882F6;
+    color: white;
+    border-color: white;
+    border-style: none;
+    border: 2px solid white;
+    padding: 5px 30px;
+    margin: 0 75px;
 }
 
 .button {
@@ -96,7 +152,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-
+    color: white;
+    padding: 20px;
 }
 
 ul {
