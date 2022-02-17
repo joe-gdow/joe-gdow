@@ -1,0 +1,111 @@
+    <!-- 
+     I think it would be cool to have a pokemon style battle scene but in the visual style of street fighter.
+     The player character and computer character have a team of 3 fighters: rock, paper, scissor.  When the user
+     selects a fighter it comes to the forefront of the battlefield and fights the computer's fighter.  Health bars
+     can represent the score and whenever a fighter loses a set number of rounds they are defeated.  
+     It could also be made more difficult by eliminating fighters that are defeated.  The winner of the first round
+     would gain a significant advantage but maybe this could be offset by doing more health damage depending on how many
+     fighters you have left.
+    -->
+
+    <!DOCTYPE html>
+    <head>
+        <title>RPS - Real Poplar Slab</title>
+    </head>
+    
+    <body>
+        <div class="buttons">
+            <button class="rock">rock!</button>
+            <button class="paper">paper!</button>
+            <button class="scissors">scissors!</button>
+        </div>
+        <div class="score">score: </div>
+        <div class="scoreboard"></div>
+        <div class="results">results: </div>
+    </body>
+    
+    <script>
+        const buttons = document.querySelectorAll('button');
+        const results = document.querySelector('.results');
+        const score = document.querySelector('.score');
+        const scoreBoard = document.querySelector('.scoreboard');
+        const rock = document.querySelector('.rock');
+        const paper = document.querySelector('.paper');
+        const scissors = document.querySelector('.scissors');
+        var condition = "";
+        
+        scoreBoard.textContent = '0 - 0';
+    
+    
+        function computerPlay() {
+            let guess = Math.floor(Math.random() * 3 + 1);
+            if (guess === 1) {
+                return "Rock"
+            }
+            else if (guess === 2) {
+                return "Paper"
+            }
+            else if (guess === 3) {
+                return "Scissors"
+            }             
+        }
+        
+        function singleRound(){
+            let playerSelection = prompt("Rock... Paper... Scissors... Shoot!");
+            if (playerSelection == "") {
+                console.log('ok');
+            }
+            playerSelection = playerSelection.toLowerCase();
+            playerSelection = playerSelection[0].toUpperCase() + playerSelection.slice(1);
+            var computerSelection = computerPlay();
+            let proof = "";
+    
+            if ((computerSelection === "Rock") && (playerSelection === "Scissors") || (computerSelection === "Paper") && (playerSelection === "Rock") || 
+                (computerSelection === "Scissors") && (playerSelection === "Paper")) {
+                condition = "Lose";
+                proof = `${computerSelection} beats ${playerSelection}`;
+                
+            }
+            else if ((computerSelection === "Scissors") && (playerSelection === "Rock") || (computerSelection === "Rock") && (playerSelection === "Paper") || 
+                (computerSelection === "Paper") && (playerSelection === "Scissors")) {
+                condition = "Win";
+                proof = `${playerSelection} beats ${computerSelection}`;
+                
+            }
+            else {
+                condition = "Tie";
+                
+            }
+            return `You ${condition}! ${proof}. Let's play again!`
+        }
+    
+        function game() {
+            let playerSelection = "";
+            while (playerSelection != "q") {
+                let playerScore = 0;
+                let computerScore = 0;
+                playerSelection = prompt("Rock Paper Scissors! To play a game, type 'play'. To quit, enter 'q'.");
+                if (playerSelection == "play") {
+                    prompt("Ok - Best out of 5! Ready?", "Click OK!");
+                    while ((playerScore < 3) && (computerScore < 3)) {
+                        singleRound();
+                        console.log(condition);
+                        if (condition == "Win") {
+                            playerScore++;
+                            console.log("Player Score: " + playerScore);
+                        }
+                        else if (condition == "Lose") {
+                            computerScore++;
+                            console.log("Computer Score: " + computerScore);                        
+                        }
+                    }
+                    if (playerScore > computerScore) {
+                        prompt(`You won the game! ${playerScore} to ${computerScore}`);
+                    }
+                    else {
+                        prompt(`You lost the game! ${computerScore} to ${playerScore}`);
+                    }
+                }
+            }
+        }
+    </script>
