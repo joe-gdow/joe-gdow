@@ -1,0 +1,24 @@
+body {
+    justify-content: center;
+    background-color: violet;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: none;
+    margin-top: 5px;
+}
+
+.grid-container > div {
+    transition: 2s;
+}
+.grid-container > div:hover {
+    background-color: orange;
+    transition: .05s;
+}
+
+.square {
+    background-color: white;
+    width: 5px;
+    height: 5px;
+}
