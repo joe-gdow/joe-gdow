@@ -1,12 +1,17 @@
 body {
-    justify-content: center;
-    background-color: violet;
+    text-align: center;
+    background-color: lightblue;
 }
-
+.center {
+    display: flex;
+    justify-content: center;
+}
 .grid-container {
     display: grid;
     grid-template-columns: none;
     margin-top: 5px;
+    height: 960px;
+    width: 960px;
 }
 
 .grid-container > div {
@@ -19,6 +24,4 @@ body {
 
 .square {
     background-color: white;
-    width: 5px;
-    height: 5px;
 }

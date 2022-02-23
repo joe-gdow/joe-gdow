@@ -1,5 +1,6 @@
 const container = document.querySelector('.grid-container'); 
 const squareButton = document.getElementById('makeASquare');
+const output = document.querySelector('.output');
 squareButton.addEventListener('click', function(){
     clearPage();
     let size = getValue();
@@ -8,15 +9,17 @@ squareButton.addEventListener('click', function(){
         addDiv();
         i++;
     }
-    container.style.gridTemplateColumns = `repeat(${size}, ${size}px)`;
+    let converted = 960 / size;
+    container.style.gridTemplateColumns = `repeat(${size}, ${converted}px)`;
+    container.style.gridTemplateRows = `repeat(${size}, ${converted}px)`;
     let squareDiv = document.getElementsByClassName('square');
-    console.log(squareDiv);
     let j = 0;
     while (j < squareDiv.length) {
-        squareDiv[j].style.width = `${size}px`;
-        squareDiv[j].style.height = `${size}px`;
+        squareDiv[j].style.width = `${converted}px`;
+        squareDiv[j].style.height = `${converted}px`;
         j++;
     }
+    output.textContent = `canvas ${reConverted}px high and ${reConverted}px wide`;
 });
 
 function clearPage() {
