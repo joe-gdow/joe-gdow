@@ -1,0 +1,63 @@
+body {
+  background-color: black;
+  color: green;
+}
+
+.buttons {
+  display: flex;
+  width: 200px;
+}
+
+.buttons div {
+  border: 1px solid greenyellow;
+  font-size: 32px;
+  font-weight: 600;
+  padding: 1px;
+}
+
+.display {
+  border: 1px solid black;
+  background-color: darkgray;
+  font-size: 32px;
+  font-weight: 600;
+  width: 200px;
+}
+
+.numbers {
+  display: flex;
+  gap: 3px;
+  flex-wrap: wrap;
+  width: 150px;
+  border: none;
+}
+
+.numbers > div {
+  padding: 14px;
+  border-radius: 5px;
+  margin: 0;
+}
+
+#zero {
+  padding: 14px 38.5px;
+}
+#point {
+  padding: 14px 18px;
+}
+#equals {
+  padding: 37px 0px;
+}
+
+.operators {
+  display: flex;
+  flex-direction: column;
+  width: 50px;
+  border: none;
+}
+
+.operators > div {
+  text-align: center;
+}
+
+.display {
+  text-align: center;
+}
