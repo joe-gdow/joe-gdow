@@ -32,16 +32,16 @@ body {
 }
 
 .numbers > div {
-  padding: 14px;
+  padding: 10px;
   border-radius: 5px;
   margin: 0;
 }
 
 #zero {
-  padding: 14px 38.5px;
+  padding: 14px 35px;
 }
 #point {
-  padding: 14px 18px;
+  padding: 14px 10px;
 }
 #equals {
   padding: 37px 0px;
