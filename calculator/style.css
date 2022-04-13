@@ -1,18 +1,24 @@
 body {
-  background-color: black;
+  background-color: grey;
   color: lime;
 }
 
 .buttons {
   display: flex;
-  width: 200px;
+  width: 300px;
+}
+
+output {
+  border: 1px solid greenyellow;
+  width: 300px;
 }
 
 .buttons div {
-  border: 1px solid greenyellow;
+  border: 1px solid black;
   font-size: 32px;
   font-weight: 600;
   padding: 1px;
+  
 }
 
 .display {
@@ -20,21 +26,24 @@ body {
   background-color: darkgray;
   font-size: 32px;
   font-weight: 600;
-  width: 200px;
+  width: 300px;
 }
 
 .numbers {
   display: flex;
   gap: 3px;
   flex-wrap: wrap;
-  width: 150px;
-  border: none;
+  width: 250px;
+  border: 1px solid black;
+
 }
 
-.numbers > div {
-  padding: 10px;
+.numbers div {
+  padding: 5px;
   border-radius: 5px;
   margin: 0;
+  width: 55px;
+  box-shadow: 2px 2px black;
 }
 
 #zero {
