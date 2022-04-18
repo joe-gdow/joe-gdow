@@ -1,35 +1,60 @@
+
+
 const numbers = document.querySelectorAll('.number');
 const display = document.querySelector('.display');
 const intDisplay = parseInt(display.innerHTML);
 const operators = document.querySelectorAll('.op');
 const calculator = document.querySelector('.calculator');
-let num1;
-let num2;
-let op;
+const clickable = document.querySelectorAll('.clickable');
+let num1 = null;
+let num2 = null;
+let op = null;
+let opRegEx = /[\*\/\+\-]/;
 
-const mather = {
+// object that defines operator functions, accepts two number inputs and returns the result
+const mather = { 
     '+': function(x,y) {return x + y},
     '-': function(x,y) {return x - y},
     '*': function(x,y) {return x * y},
     '/': function(x,y) {return x / y},
 }
+//button functions
+function clear() {
+    display.innerHTML = '0';
+    op = null;
+    num1 = null;
+    num2 = null;
+}
 
+function equals() {
+    let splitDisp = display.innerHTML.split(op);
+    display.innerHTML = mather[op](Number(splitDisp[0]), Number(splitDisp[1]));
+}
+
+function addToDisplay(target) {
+    if (display.innerHTML === '0') {
+        display.innerHTML = target;
+    }
+    else { display.innerHTML += target; }
+} 
+
+//click event handler
 calculator.addEventListener('click', (e) => {
+    if (e.target.id === 'clear') {clear()};
+    if (e.target.id === 'equals') {equals()};
     if (e.target.classList.contains('number')) {
-        e.target.style.boxShadow = '2px 2px black inset';
-        display.innerHTML += e.target.innerHTML;
-    } 
+        addToDisplay(e.target.innerHTML);
+    }
     if (e.target.classList.contains('op')) {
-        num1 = Number(display.innerHTML);
-        console.log(num1);
-        op = e.target.innerHTML;
-        display.innerHTML = num1 + op;
+        if (!op) {
+            op = e.target.innerHTML;
+            display.innerHTML += op;
+
+        }
+        else {
+            equals();
+            op = e.target.innerHTML;
+            display.innerHTML += op;
+        }
     }
-    if (e.target.classList.contains('equals')) {
-        let num2 = parseInt(display.innerHTML.split(/[\*\/\+\-]/)[1]);//this regex searches for an operator
-        console.log('the operator is ' + op);
-        console.log('num2 is ' + num2);
-        display.innerHTML = mather[op](num1, num2);//figure out a way to take the operator out of the display string
-    }
-    if (e.target.id === 'clear') {display.innerHTML = '0'}
-})
+});
