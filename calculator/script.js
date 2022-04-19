@@ -42,6 +42,11 @@ function addToDisplay(target) {
 calculator.addEventListener('click', (e) => {
     if (e.target.id === 'clear') {clear()};
     if (e.target.id === 'equals') {equals()};
+    if (e.target.id === 'point') {
+        if (display.innerHTML.search(/[.]/) === -1) {
+            display.innerHTML += e.target.innerHTML;
+        }
+    }
     if (e.target.classList.contains('number')) {
         addToDisplay(e.target.innerHTML);
     }

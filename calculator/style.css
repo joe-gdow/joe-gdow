@@ -44,6 +44,7 @@ output {
   margin: 0;
   width: 55px;
   box-shadow: 2px 2px black;
+  
 }
 
 #zero {
@@ -65,8 +66,14 @@ output {
 
 .operators > div {
   text-align: center;
+  background: purple;
 }
 
 .display {
   text-align: center;
+}
+
+.calculator {
+  width: 300px;
+  border: 5px solid black;
 }
