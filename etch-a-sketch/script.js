@@ -1,6 +1,26 @@
 const container = document.querySelector('.grid-container'); 
 const squareButton = document.getElementById('makeASquare');
 const output = document.querySelector('.output');
+const colorSquare = document.querySelectorAll('.colors>div');
+const colorButton = document.querySelector('#addColor');
+const inputId = document.querySelector('#colorInput').value;
+
+let makeColor = function(color) { //fill the color pallete with colored squares
+    
+    if (color) {
+        let newDiv = document.createElement
+    }
+    for (div of colorSquare) {
+        div.style.background = div.className;
+    }
+
+}
+makeColor();
+
+colorButton.addEventListener('click', )//get input from field on button click
+
+
+
 squareButton.addEventListener('click', function(){
     clearPage();
     let size = getValue();
@@ -9,7 +29,7 @@ squareButton.addEventListener('click', function(){
         addDiv();
         i++;
     }
-    let converted = 960 / size;
+    let converted = 480 / size;
     container.style.gridTemplateColumns = `repeat(${size}, ${converted}px)`;
     container.style.gridTemplateRows = `repeat(${size}, ${converted}px)`;
     let squareDiv = document.getElementsByClassName('square');
@@ -19,7 +39,7 @@ squareButton.addEventListener('click', function(){
         squareDiv[j].style.height = `${converted}px`;
         j++;
     }
-    output.textContent = `canvas ${reConverted}px high and ${reConverted}px wide`;
+    output.textContent = `canvas ${size}px high and ${size}px wide`;
 });
 
 function clearPage() {

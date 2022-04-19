@@ -10,18 +10,25 @@ body {
     display: grid;
     grid-template-columns: none;
     margin-top: 5px;
-    height: 960px;
-    width: 960px;
+    height: 480px;
+    width: 480px;
 }
 
 .grid-container > div {
     transition: 2s;
 }
 .grid-container > div:hover {
-    background-color: orange;
     transition: .05s;
+}
+
+.hovered {
 }
 
 .square {
     background-color: white;
+}
+
+.colors > div {
+    width: 48px;
+    height: 48px;
 }
