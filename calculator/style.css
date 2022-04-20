@@ -1,41 +1,49 @@
 body {
   background-color: grey;
-  color: lime;
+  color: purple;
+
 }
 
 .buttons {
   display: flex;
   width: 300px;
+
 }
 
-output {
-  border: 1px solid greenyellow;
-  width: 300px;
+.calculator {
+  background-color: darkslategray;
 }
 
+.buttons {
+  background: darkslategrey;
+}
 .buttons div {
   border: 1px solid black;
+  color: white;
   font-size: 32px;
   font-weight: 600;
   padding: 1px;
-  
 }
 
 .display {
   border: 1px solid black;
-  background-color: darkgray;
+  background-color: darkslategray;
+  color: black;
   font-size: 32px;
   font-weight: 600;
-  width: 300px;
+  max-width: 300px;
+  text-align: right;
+  padding-right: 5px;
 }
 
 .numbers {
   display: flex;
-  gap: 3px;
   flex-wrap: wrap;
+  ju
+  gap: 3px;
   width: 250px;
   border: 1px solid black;
-
+  background-color: darkblue;
 }
 
 .numbers div {
@@ -43,8 +51,7 @@ output {
   border-radius: 5px;
   margin: 0;
   width: 55px;
-  box-shadow: 2px 2px black;
-  
+  background-color: black;
 }
 
 #zero {
@@ -66,11 +73,7 @@ output {
 
 .operators > div {
   text-align: center;
-  background: purple;
-}
-
-.display {
-  text-align: center;
+  background: black;
 }
 
 .calculator {
