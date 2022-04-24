@@ -60,7 +60,7 @@ function clearPage() { // clears the page
     colorInput.value = '';
     //makeSquares(16);
 }
-
+//load defaults
 makeColor();
 makeSquares(50);
 
@@ -82,11 +82,9 @@ document.addEventListener('click', function(e){
         currentColor = e.target.id;
     }
 });
-
 document.addEventListener('mouseup', function() {
     mousedown = false;
 });
-
 document.addEventListener('mousedown', function(e) {
     if (e.target.classList.contains('square')) {
         mousedown = true;
@@ -116,5 +114,3 @@ colorInput.addEventListener('keydown', function(e) {
         colorInput.value = '';
     }
 })
-
-// figure out how to click and hold to drag colors
