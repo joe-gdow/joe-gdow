@@ -22,9 +22,8 @@ function makeColor(color) { //fill the color pallete with colored squares
     for (div of colorSquare) {
         div.style.background = div.id;
     }
-    colorInput.value = '';
 }
-function makeSquares(size) {
+function makeSquares(size) { //populate the grid with the users choice
     let i = 0;
     while (i < size*size) {
         addDiv();
@@ -43,20 +42,22 @@ function makeSquares(size) {
     }
     output.textContent = `canvas ${size}px high and ${size}px wide`;
 }
-function getValue() {
+function getValue() {  //pull grid size value from user input
     value = document.getElementById('userInput').value;
     if (value > 100) {
         value = 100;
     }
     return value;
 }
-function addDiv() {
+function addDiv() {  //adds divs for grid
     let newDiv = document.createElement("div");
     newDiv.classList.add("square");
     container.appendChild(newDiv);
 }
-function clearPage() {
+function clearPage() { // clears the page
     container.innerHTML = "";
+    gridInput.value = '';
+    colorInput.value = '';
     //makeSquares(16);
 }
 
@@ -93,12 +94,14 @@ gridInput.addEventListener('keydown', function(e) {
         let size = getValue();
         clearPage();
         makeSquares(size);
+        gridInput.value = '';
     }
 })
 colorInput.addEventListener('keydown', function(e) {
     if (e.key === 'Enter') {
         let colorName = document.querySelector('#colorInput').value;
         makeColor(colorName);
+        colorInput.value = '';
     }
 })
 
