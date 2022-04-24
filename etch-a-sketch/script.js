@@ -3,27 +3,25 @@ const squareButton = document.getElementById('makeASquare');
 const output = document.querySelector('.output');
 const colorSquare = document.querySelectorAll('.colors>div');
 const colorButton = document.querySelector('#addColor');
-const inputId = document.querySelector('#colorInput').value;
+const grid = document.querySelectorAll('.grid-container');
+const colorsContainer = document.querySelector('.colors');
+const clear = document.querySelector('#clear');
+const filled = document.querySelector('.filled');
+let currentColor = 'black';
 
-let makeColor = function(color) { //fill the color pallete with colored squares
-    
+function makeColor(color) { //fill the color pallete with colored squares
     if (color) {
-        let newDiv = document.createElement
+        let newDiv = document.createElement('div');
+        newDiv.setAttribute('id', color);
+        newDiv.classList.add('color');
+        colorsContainer.appendChild(newDiv);
+        newDiv.style.backgroundColor = color;
     }
     for (div of colorSquare) {
-        div.style.background = div.className;
+        div.style.background = div.id;
     }
-
 }
-makeColor();
-
-colorButton.addEventListener('click', )//get input from field on button click
-
-
-
-squareButton.addEventListener('click', function(){
-    clearPage();
-    let size = getValue();
+function makeSquares(size) {
     let i = 0;
     while (i < size*size) {
         addDiv();
@@ -40,12 +38,7 @@ squareButton.addEventListener('click', function(){
         j++;
     }
     output.textContent = `canvas ${size}px high and ${size}px wide`;
-});
-
-function clearPage() {
-    container.innerHTML = "";
 }
-
 function getValue() {
     value = document.getElementById('userInput').value;
     if (value > 100) {
@@ -53,27 +46,46 @@ function getValue() {
     }
     return value;
 }
-
 function addDiv() {
     let newDiv = document.createElement("div");
     newDiv.classList.add("square");
     container.appendChild(newDiv);
 }
-
-/* function setSize() {
-    let gridSize = getValue();
-    document.querySelector('.square').style.width = gridSize + 'px;';
-    document.querySelector('.square').style.height = gridSize + 'px;';
+function clearPage() {
+    container.innerHTML = "";
+    makeSquares(16);
+}
+/* function setColor(color) {
+    
 } */
 
-function printGrid() {
-    clearPage();
-    let size = getValue();
-    let i = 0;
-    while (i < size*size) {
-        addDiv();
-        i++;
+makeColor();
+makeSquares(50);
+
+document.addEventListener('click', function(e){
+    if (e.target.id === 'makeASquare') {
+        let size = getValue();
+        clearPage();
+        makeSquares(size);
     }
-    container.style.gridTemplateColumns = 'repeat(' + size + ', ' + size + 'px);';
-    //setSize();
-}
+    if (e.target.id === 'addColor') {
+        let colorName = document.querySelector('#colorInput').value;
+        makeColor(colorName);
+    }
+    if (e.target.id === 'clear') {
+        clearPage();
+    }
+    if (e.target.classList.contains('color')) {
+        currentColor = e.target.id;
+        console.log(currentColor);
+    }
+});
+
+document.addEventListener('mousedown', function(e) {
+    if (e.target.classList.contains('square')) {
+        e.target.style.background = currentColor;
+    }
+})
+
+// fix color choose/click color
+// figure out how to click and hold to drag colors

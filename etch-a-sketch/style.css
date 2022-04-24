@@ -1,6 +1,6 @@
 body {
     text-align: center;
-    background-color: lightblue;
+    background: lightblue;
 }
 .center {
     display: flex;
@@ -15,20 +15,22 @@ body {
 }
 
 .grid-container > div {
-    transition: 2s;
 }
 .grid-container > div:hover {
-    transition: .05s;
 }
 
 .hovered {
 }
 
 .square {
-    background-color: white;
+    background: white;
 }
 
 .colors > div {
     width: 48px;
     height: 48px;
+}
+
+.filled {
+    
 }
