@@ -91,6 +91,7 @@ document.addEventListener('mousedown', function(e) {
     if (e.target.classList.contains('square')) {
         mousedown = true;
         let squareDiv = document.querySelectorAll('.square');
+        e.target.style.background = currentColor;
             for (let square of squareDiv) {
                 square.onmouseover = () => {
                     if (mousedown !== false) {
