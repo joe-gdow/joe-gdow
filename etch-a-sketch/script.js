@@ -7,6 +7,8 @@ const grid = document.querySelectorAll('.grid-container');
 const colorsContainer = document.querySelector('.colors');
 const clear = document.querySelector('#clear');
 const filled = document.querySelector('.filled');
+const gridInput = document.querySelector('#userInput');
+const colorInput = document.querySelector('#colorInput');
 let currentColor = 'black';
 
 function makeColor(color) { //fill the color pallete with colored squares
@@ -20,6 +22,7 @@ function makeColor(color) { //fill the color pallete with colored squares
     for (div of colorSquare) {
         div.style.background = div.id;
     }
+    colorInput.value = '';
 }
 function makeSquares(size) {
     let i = 0;
@@ -31,6 +34,7 @@ function makeSquares(size) {
     container.style.gridTemplateColumns = `repeat(${size}, ${converted}px)`;
     container.style.gridTemplateRows = `repeat(${size}, ${converted}px)`;
     let squareDiv = document.getElementsByClassName('square');
+    console.log(squareDiv)
     let j = 0;
     while (j < squareDiv.length) {
         squareDiv[j].style.width = `${converted}px`;
@@ -53,11 +57,8 @@ function addDiv() {
 }
 function clearPage() {
     container.innerHTML = "";
-    makeSquares(16);
+    //makeSquares(16);
 }
-/* function setColor(color) {
-    
-} */
 
 makeColor();
 makeSquares(50);
@@ -71,21 +72,34 @@ document.addEventListener('click', function(e){
     if (e.target.id === 'addColor') {
         let colorName = document.querySelector('#colorInput').value;
         makeColor(colorName);
+
     }
     if (e.target.id === 'clear') {
         clearPage();
+        makeSquares(50);
     }
     if (e.target.classList.contains('color')) {
         currentColor = e.target.id;
         console.log(currentColor);
     }
 });
-
 document.addEventListener('mousedown', function(e) {
     if (e.target.classList.contains('square')) {
         e.target.style.background = currentColor;
     }
 })
+gridInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+        let size = getValue();
+        clearPage();
+        makeSquares(size);
+    }
+})
+colorInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+        let colorName = document.querySelector('#colorInput').value;
+        makeColor(colorName);
+    }
+})
 
-// fix color choose/click color
 // figure out how to click and hold to drag colors
