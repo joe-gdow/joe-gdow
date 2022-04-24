@@ -10,6 +10,7 @@ const filled = document.querySelector('.filled');
 const gridInput = document.querySelector('#userInput');
 const colorInput = document.querySelector('#colorInput');
 let currentColor = 'black';
+let mousedown;
 
 function makeColor(color) { //fill the color pallete with colored squares
     if (color) {
@@ -33,7 +34,6 @@ function makeSquares(size) { //populate the grid with the users choice
     container.style.gridTemplateColumns = `repeat(${size}, ${converted}px)`;
     container.style.gridTemplateRows = `repeat(${size}, ${converted}px)`;
     let squareDiv = document.getElementsByClassName('square');
-    console.log(squareDiv)
     let j = 0;
     while (j < squareDiv.length) {
         squareDiv[j].style.width = `${converted}px`;
@@ -73,7 +73,6 @@ document.addEventListener('click', function(e){
     if (e.target.id === 'addColor') {
         let colorName = document.querySelector('#colorInput').value;
         makeColor(colorName);
-
     }
     if (e.target.id === 'clear') {
         clearPage();
@@ -81,12 +80,24 @@ document.addEventListener('click', function(e){
     }
     if (e.target.classList.contains('color')) {
         currentColor = e.target.id;
-        console.log(currentColor);
     }
 });
+
+document.addEventListener('mouseup', function() {
+    mousedown = false;
+});
+
 document.addEventListener('mousedown', function(e) {
     if (e.target.classList.contains('square')) {
-        e.target.style.background = currentColor;
+        mousedown = true;
+        let squareDiv = document.querySelectorAll('.square');
+            for (let square of squareDiv) {
+                square.onmouseover = () => {
+                    if (mousedown !== false) {
+                    square.style.background = currentColor;
+                    }
+                }
+            }
     }
 })
 gridInput.addEventListener('keydown', function(e) {
