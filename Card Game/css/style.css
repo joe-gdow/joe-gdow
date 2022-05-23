@@ -1,0 +1,37 @@
+/******************************************
+/* CSS
+/*******************************************/
+
+/* Box Model Hack */
+*{
+  box-sizing: border-box;
+}
+
+/******************************************
+/* LAYOUT
+/*******************************************/
+img{
+  display: block;
+  margin: 0 auto;
+}
+
+
+/******************************************
+/* ADDITIONAL STYLES
+/*******************************************/
+
+body {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+.gameboard{
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+}
+
+.player {
+  min-width: 150px;
+}

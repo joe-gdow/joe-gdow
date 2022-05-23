@@ -1,0 +1,9 @@
+body {
+  background: rgb(250,250,250);
+  color: rgb(28,27,34);
+  transition: background-color 2000ms, color 2000ms;
+}
+
+button {
+  border-style: solid black 40px;
+}

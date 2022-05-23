@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<head>
+    <title>idk</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+    <body>
+        <dl>
+            <dt>Fwed</dt>
+            
+            <dt>squirrel</dt>
+            <dd>two chonks</dd>
+            <dt><abbr title="beeblebob">beeb</abbr></dt>
+            <dd>bob</dd>
+            <dfn>the beeble who bobs</dfn>
+        </dl>
+
+        <figure>imagine an image of fwed</figure>
+        <figcaption>what a biggun</figcaption>
+        <hr>
+        <a href="yourmomma.html">yer mom -</a>
+        <abbr title="Mom I'd Like To Fuck">M.I.L.F.</abbr>
+        <br><bdo><strong>huh?</strong></bdo>
+        <br><cite>Taken from the award winning drama: Dude, Where's My Car?</cite>
+        <br>
+        <code style="cursor: url(https://upload.wikimedia.org/wikipedia/commons/b/bd/Digital_rain_animation_big_letters_shine.gif), help;" >console.log('hello, world!');</code>
+        <section>this is a section</section>
+        <em>THIS is a section </em>
+        <em><em>THIS</em> is a section </em>
+        <em><em>This is a <em>SECTION</em></em></em>
+        <br>
+        <kbd>is that a section?</kbd>
+        <br>
+        <q>is this?</q>
+        <em><strong><s>NO!</s></strong></em>
+        <br><sub>ok</sub><sup>ok</sup><sub>ok</sub><sup>ok</sup><sub>ok</sub><sup>ok</sup><sub>ok</sub><sup>ok</sup>
+        <sub>ok</sub><sup>ok</sup><sub>ok</sub><sup>ok</sup><sub>ok</sub><sup>ok</sup><sub>ok</sub><sup>ok</sup>
+        <sub>ok</sub><sup>ok</sup><sub>ok</sub><sup>ok</sup><sub>ok</sub><sup>ok</sup><sub>ok</sub><sup>ok</sup>
+        <sub>ok</sub><sup>ok</sup><sub>ok</sub><sup>ok</sup><sub>ok</sub><sup>ok</sup><sub>ok</sub><sup>ok</sup>
+        <sub>ok</sub><sup>ok</sup><sub>ok</sub><sup>ok</sup><sub>ok</sub><sup>ok</sup><sub>ok</sub><sup>ok</sup>
+        <sub>ok</sub><sup>ok</sup><sub>ok</sub><sup>ok</sup><sub>ok</sub><sup>ok</sup><sub>ok</sub><sup>ok</sup>
+        <sub>ok</sub><sup>ok</sup><sub>ok</sub><sup>ok</sup><sub>ok</sub><sup>ok</sup><sub>ok</sub><sup>ok</sup>
+        <sub>ok</sub><sup>ok</sup><sub>ok</sub><sup>ok</sup><sub>ok</sub><sup>ok</sup><sub>ok</sub><sup>ok</sup>  
+        <br>
+        <time></time>
+        <br><button id="time"> Get the time</button>
+        <br>   <br>
+        <form action="javascript:void(0);">
+
+            <label for="firstName">1st name:</label>
+            <input type="text" id="firstName" name="firstName" placeholder="ur 1st name goes here">
+            <button id="formSubmit">send it</button>
+            <label for="userEmail">Email:</label>
+            <input type="email" id="userEmail" name="userEmail" placeholder="your@email.com">
+            <button type="reset">reset</button>
+            <br><h3></h3><br>
+            <textarea rows="4" cols="35">Leave a comment: </textarea>
+            <select name="Cats">
+                <option selected>--Cats:--</option>
+                <option value="fred">Fred</option>
+                <option value="squirrel">Squirrel</option>
+                <option value="beeb">Beeb</option>
+            </optgroup>
+            </select>
+        </form>
+
+
+        <br>
+        <fieldset>
+            <legend>Enjoy this amusing set of color schemes:</legend>
+            <input type="radio" id="matrix" name="background" value="matrix">
+            <label for="matrix">ENter the matrix</label>
+            <input type="radio" id="dark" name="background" value="dark">
+            <label for="dark">dark mode</label>
+            <input type="radio" id="light" name="background" value="light">
+            <label for="light">light mode</label>
+            <input type="checkbox" id="gay" name="gay">
+            <label for="gay">gay</label>
+        </fieldset>
+    </body>
+    <script>
+        
+        const timeTag = document.querySelector('time');
+        const timeButt = document.querySelector('#time');
+        const firstName = document.querySelector('#firstName');
+        const formSubmitButton = document.querySelector('#formSubmit');
+        const output = document.querySelector('h3');
+        const bgButt = document.querySelectorAll('input[name="background"]');
+        const gayButt = document.querySelector('#gay');
+        document.onload = setBg('light');
+        document.querySelector('#light').checked = true;
+        
+        bgButt.forEach((button)=> button.addEventListener('click', (e)=>setBg(e.target.value)))
+        timeTag.innerHTML = '00:00:00'
+        firstName.addEventListener('keyup', (e) => {
+            const letterArray = [];
+            letterArray.push(firstName.value);
+            output.innerHTML = backwards(letterArray.toString());
+        })
+
+        formSubmitButton.addEventListener('click', () => {
+            output.innerHTML = backwards(output.innerHTML);
+        })
+
+        timeButt.addEventListener('click', ()=> timeTag.innerHTML = Date());
+        gayButt.addEventListener('click', (e)=>{
+            console.log(e.target.checked)
+            if (e.target.checked === true) {
+                setBg('gay')
+            }
+        })
+
+        function setBg(mode) {
+            gayButt.checked = false;
+            switch(mode){
+                case 'matrix':
+                    document.body.style.background = 'black';
+                    document.body.style.color = 'green';
+                    break;
+                case 'dark': 
+                    document.body.style.background = 'rgb(28,27,34)';
+                    document.body.style.color = 'rgb(250,250,250)';
+                    break;
+                case 'light':
+                    document.body.style.background = 'rgb(250,250,250)';
+                    document.body.style.color = 'rgb(28,27,34)';
+                    break;
+                case 'gay':
+                    gayButt.checked = true;
+                    document.body.style.background = 'rgb(52, 0, 94)';
+                    document.body.style.color = 'rgb(217, 0, 255)';
+                    document.querySelector('#light').checked = false;
+                    break;
+            }
+        }
+
+        function backwards(string) {
+            let array = string.split('');
+            let backwards = array.reverse().join('');
+            return backwards
+        }
+        const codeSample = document.querySelector('code');
+        codeSample.addEventListener('click', (e) => alert(codeSample.innerHTML));
+        
+    </script>
