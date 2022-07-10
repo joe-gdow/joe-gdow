@@ -11,11 +11,15 @@ body {
   height: 100vh;
 }
 
+.right {
+  width: 65vw;
+}
 .right .message {
   padding: 7rem 21rem 3rem 3rem;
   font-size: 20px;
   font-weight: 600;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  line-height: 1.5;
 }
 
 .form {
@@ -30,8 +34,9 @@ body {
 
 .signup {
   background: white;
-  padding: 1rem 21rem 3rem 3rem;
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+  padding: 1rem 20rem 3rem 3rem;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  box-shadow: 0px 5px 10px -5px #111;
 }
 
 .letsdothis {
@@ -44,11 +49,17 @@ body {
   border: 1px solid lightgrey;
   height: 1.5rem;
 }
+.form input:focus {
+  box-shadow: 1px 1px 3px 3px grey;
+}
 .end {
   padding: 3rem 21rem 3rem 3rem;
+  font-size: 16px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
 }
 
-.end button {
+#create {
   background-color: green;
   color: white;
   padding: 20px;
@@ -57,4 +68,10 @@ body {
   font-size: 20px;
   font-weight: 600px;
   margin-bottom: 1.5rem;
+}
+
+.end a {
+  color: green;
+  text-decoration: none;
+  font-weight: 600;
 }
