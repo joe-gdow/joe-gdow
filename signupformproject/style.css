@@ -1,0 +1,60 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+  display: flex;
+  background: lightgrey;
+}
+
+.left img {
+  width: 35vw;
+  height: 100vh;
+}
+
+.right .message {
+  padding: 7rem 21rem 3rem 3rem;
+  font-size: 20px;
+  font-weight: 600;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.form {
+  padding-top: 2rem;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 33% 33% 33%;
+  gap: 20px;
+  font-size: 12px;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.signup {
+  background: white;
+  padding: 1rem 21rem 3rem 3rem;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+.letsdothis {
+  font-size: 20px;
+  font-weight: 600;
+}
+.form input {
+  width: 66%;
+  border-radius: 4px;
+  border: 1px solid lightgrey;
+  height: 1.5rem;
+}
+.end {
+  padding: 3rem 21rem 3rem 3rem;
+}
+
+.end button {
+  background-color: green;
+  color: white;
+  padding: 20px;
+  width: 15rem;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: 600px;
+  margin-bottom: 1.5rem;
+}
