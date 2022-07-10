@@ -5,18 +5,23 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
   <title>Sign-up here!</title>
 </head>
 <body>
   <div class="left">
     <img src="bg.avif">
+    <div class="logotextbg">
+      <div class="logotext">joe_gdow</div>
+    </div>
+    <div class="photocredit"><span>Photo by Halie West on Unsplash</span></div>
   </div>
   <div class="right">
     <div class="message">This is not a real online service! You know you need something<br> like this in your life to help you realize your deepest dreams.<br> Sign up <em>now</em> to get started. <br><br> You <em>know</em> you want to.</div>
     <div class="signup">
       <div class="letsdothis">Let's do this!</div>
       
-      <div class="form">
+      <form id="signupform"><div class="form">
         <div>
           <label for="firstName">FIRST NAME</label>
           <br><input type="text" id="firstName" name="firstName">
@@ -31,20 +36,21 @@
         </div>
         <div>
           <label for="phone">PHONE NUMBER</label>
-          <br><input type="tel" id="phone" name="phone">
+          <br><input type="tel" id="phone" name="phone" minlength="10">
         </div>
         <div>
           <label for="pw">PASSWORD</label>
-          <br><input type="password" id="pw" name="pw">
+          <br><input type="password" id="pw" name="pw" minlength="8">
         </div>
         <div>
           <label for="confirm">CONFIRM PASSWORD</label>
-          <br><input type="password" id="confirm" name="confirm">
+          <br><input type="password" id="confirm" name="confirm" minlength="8">
+          <br><div id="pwnomatchmsg">*Passwords do not match</div>
         </div>
       </div>
     </div>
     <div class="end">
-      <button id="create">Create Account</button>
+      <button type="submit" id="create">Create Account</button></form>
       <br>Already have an account? <a href="#">Log in</a>
     </div>
   </div>
