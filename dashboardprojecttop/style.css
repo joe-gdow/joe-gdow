@@ -1,0 +1,78 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.sidebar {
+  background-color: rgb(56, 171, 243);
+  color: rgb(244, 244, 255);
+  grid-column: 1;
+  grid-row: 1 / 5;
+}
+
+.header-container {
+  grid-column: 2 / 3;
+  box-shadow: 5px 5px 10px 5px black;
+}
+
+.main-content {
+  background-color: rgb(244, 245, 255);
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 20px;
+}
+
+.page-wrapper {
+  display: grid;
+  min-height: 100%;
+  grid-template-columns: 1fr 4fr;
+  grid-template-rows: 1fr 5fr;
+}
+
+.announcements {
+  grid-column: 2 / 3;
+}
+
+.trending {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+}
+
+.card-container {
+  height: 100%;
+  width: 100%;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.card {
+  background-color: white;
+  height: 200px;
+  border-radius: 10px;
+  box-shadow: 1px 1px 5px -1px rgb(165, 165, 165);
+}
+
+.announcements {
+  gap: 5px;
+  margin-right: 20px;
+}
+
+.announcement-articles{
+  background-color:rgb(255, 255, 255);
+  padding: 15px;
+  margin-top: 10px;
+  border-radius: 10px;
+  box-shadow: 1px 1px 5px -1px rgb(165, 165, 165);
+  display: grid;
+  gap: 10px;
+}
