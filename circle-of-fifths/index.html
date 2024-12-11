@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Circle of Fifths</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Circle of Fifths</h1>
+        <div class="circle-container">
+            <div class="outer-circle">
+                <!-- Major keys -->
+                <div class="key" data-note="C" style="--i:0">C</div>
+                <div class="key" data-note="G" style="--i:1">G</div>
+                <div class="key" data-note="D" style="--i:2">D</div>
+                <div class="key" data-note="A" style="--i:3">A</div>
+                <div class="key" data-note="E" style="--i:4">E</div>
+                <div class="key" data-note="B" style="--i:5">B</div>
+                <div class="key" data-note="F#" style="--i:6">F♯</div>
+                <div class="key" data-note="Db" style="--i:7">D♭</div>
+                <div class="key" data-note="Ab" style="--i:8">A♭</div>
+                <div class="key" data-note="Eb" style="--i:9">E♭</div>
+                <div class="key" data-note="Bb" style="--i:10">B♭</div>
+                <div class="key" data-note="F" style="--i:11">F</div>
+            </div>
+            <div class="inner-circle">
+                <!-- Relative minor keys -->
+                <div class="key minor" data-note="Am" style="--i:0">Am</div>
+                <div class="key minor" data-note="Em" style="--i:1">Em</div>
+                <div class="key minor" data-note="Bm" style="--i:2">Bm</div>
+                <div class="key minor" data-note="F#m" style="--i:3">F♯m</div>
+                <div class="key minor" data-note="C#m" style="--i:4">C♯m</div>
+                <div class="key minor" data-note="G#m" style="--i:5">G♯m</div>
+                <div class="key minor" data-note="D#m" style="--i:6">D♯m</div>
+                <div class="key minor" data-note="Bbm" style="--i:7">B♭m</div>
+                <div class="key minor" data-note="Fm" style="--i:8">Fm</div>
+                <div class="key minor" data-note="Cm" style="--i:9">Cm</div>
+                <div class="key minor" data-note="Gm" style="--i:10">Gm</div>
+                <div class="key minor" data-note="Dm" style="--i:11">Dm</div>
+            </div>
+        </div>
+        <div class="info-panel">
+            <h2>Selected Key: <span id="selected-key">-</span></h2>
+            <div class="key-info">
+                <p>Relative Minor/Major: <span id="relative-key">-</span></p>
+                <p>Key Signature: <span id="key-signature">-</span></p>
+                <div id="scale-notes">
+                    <p>Scale Notes: <span id="scale-notes-text">-</span></p>
+                </div>
+                <div id="chord-progression">
+                    <p>Common Chord Progression: <span id="chord-progression-text">-</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
