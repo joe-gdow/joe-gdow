@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Focus Space</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .star {
+            position: fixed;
+            width: 2px;
+            height: 2px;
+            background: #ffffff;
+            opacity: 0;
+        }
+
+        .controls-header {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            z-index: 2;
+        }
+
+        .animation-controls {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 0.5rem;
+        }
+
+        .particle-slider {
+            width: 100px;
+            background: #2d2d2d;
+            -webkit-appearance: none;
+            height: 5px;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .particle-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 15px;
+            height: 15px;
+            background: #4a90e2;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .container {
+            background-color: #2d2d2d;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            max-width: 400px;
+            width: 100%;
+            z-index: 1;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+
+        .controls {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        select {
+            width: 100%;
+            padding: 0.5rem;
+            border-radius: 5px;
+            border: 1px solid #444;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            cursor: pointer;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #4a90e2;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            background: #1a1a1a;
+            -webkit-appearance: none;
+            height: 5px;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 15px;
+            height: 15px;
+            background: #4a90e2;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        button {
+            flex: 1;
+            padding: 0.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #4a90e2;
+            color: white;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #357abd;
+        }
+
+        .animation-toggle {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #ffffff;
+            padding: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div id="starsContainer"></div>
+    <div class="controls-header">
+        <div class="animation-controls">
+            <input type="range" id="particleSlider" class="particle-slider" min="1" max="20" value="5">
+            <button class="animation-toggle" id="animationToggle">✨</button>
+        </div>
+    </div>
+    <div class="container">
+        <h1>Focus Space</h1>
+        <div class="controls">
+            <select id="soundSelect">
+                <option value="white">White Noise</option>
+                <option value="pink">Pink Noise</option>
+                <option value="brown">Brown Noise</option>
+                <option value="violet">Violet Noise</option>
+                <option value="grey">Grey Noise</option>
+                <option value="blue">Blue Noise</option>
+            </select>
+            <input type="range" id="volumeControl" min="0" max="100" value="50">
+            <div class="button-container">
+                <button id="playButton">Play</button>
+                <button id="stopButton">Stop</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Audio Context
+        let audioContext;
+        let noiseNode;
+        let gainNode;
+
+        // Animation state
+        let particles = [];
+        const starsContainer = document.getElementById('starsContainer');
+        let isAnimated = true;
+
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'star';
+            starsContainer.appendChild(particle);
+
+            const angle = Math.random() * Math.PI * 2;
+            const speed = 0.3 + Math.random() * 0.7; // Slower speed
+            const size = 1 + Math.random() * 1.5;
+
+            const particleObj = {
+                element: particle,
+                angle,
+                speed,
+                x: Math.random() * window.innerWidth,
+                y: Math.random() * window.innerHeight,
+                size
+            };
+
+            particle.style.width = size + 'px';
+            particle.style.height = size + 'px';
+
+            particles.push(particleObj);
+            animateParticle(particleObj);
+        }
+
+        function animateParticle(particle) {
+            if (!isAnimated) return;
+
+            const dx = Math.cos(particle.angle) * particle.speed;
+            const dy = Math.sin(particle.angle) * particle.speed;
+
+            particle.x += dx;
+            particle.y += dy;
+
+            // Reset position when particle goes off screen
+            const margin = 20;
+            if (particle.x < -margin) particle.x = window.innerWidth + margin;
+            if (particle.x > window.innerWidth + margin) particle.x = -margin;
+            if (particle.y < -margin) particle.y = window.innerHeight + margin;
+            if (particle.y > window.innerHeight + margin) particle.y = -margin;
+
+            particle.element.style.transform = `translate(${particle.x}px, ${particle.y}px)`;
+            particle.element.style.opacity = 1;
+
+            requestAnimationFrame(() => animateParticle(particle));
+        }
+
+        document.getElementById('animationToggle').addEventListener('click', () => {
+            isAnimated = !isAnimated;
+            document.getElementById('animationToggle').textContent = isAnimated ? '✨' : '⭐';
+            if (!isAnimated) {
+                particles.forEach(particle => {
+                    if (particle.element) {
+                        particle.element.remove();
+                    }
+                });
+                particles = [];
+            } else {
+                createParticles(parseInt(document.getElementById('particleSlider').value));
+            }
+        });
+
+        document.getElementById('particleSlider').addEventListener('input', () => {
+            if (isAnimated) {
+                particles.forEach(particle => {
+                    if (particle.element) {
+                        particle.element.remove();
+                    }
+                });
+                particles = [];
+                createParticles(parseInt(document.getElementById('particleSlider').value));
+            }
+        });
+
+        function createParticles(count) {
+            for (let i = 0; i < count; i++) {
+                createParticle();
+            }
+        }
+
+        // Initialize particles
+        createParticles(parseInt(document.getElementById('particleSlider').value));
+
+        // Audio Functions
+        function createNoise(type) {
+            const bufferSize = 2 * audioContext.sampleRate;
+            const noiseBuffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
+            const output = noiseBuffer.getChannelData(0);
+
+            switch(type) {
+                case 'white':
+                    for (let i = 0; i < bufferSize; i++) {
+                        output[i] = Math.random() * 2 - 1;
+                    }
+                    break;
+                case 'pink':
+                    let b0 = 0, b1 = 0, b2 = 0, b3 = 0, b4 = 0, b5 = 0, b6 = 0;
+                    for (let i = 0; i < bufferSize; i++) {
+                        const white = Math.random() * 2 - 1;
+                        b0 = 0.99886 * b0 + white * 0.0555179;
+                        b1 = 0.99332 * b1 + white * 0.0750759;
+                        b2 = 0.96900 * b2 + white * 0.1538520;
+                        b3 = 0.86650 * b3 + white * 0.3104856;
+                        b4 = 0.55000 * b4 + white * 0.5329522;
+                        b5 = -0.7616 * b5 - white * 0.0168980;
+                        b6 = white * 0.115926;
+                        output[i] = (b0 + b1 + b2 + b3 + b4 + b5 + b6) * 0.11;
+                    }
+                    break;
+                case 'brown':
+                    let lastOut = 0.0;
+                    for (let i = 0; i < bufferSize; i++) {
+                        const white = Math.random() * 2 - 1;
+                        output[i] = (lastOut + (0.02 * white)) / 1.02;
+                        lastOut = output[i];
+                        output[i] *= 3.5;
+                    }
+                    break;
+                case 'violet':
+                    // Violet noise emphasizes high frequencies
+                    for (let i = 0; i < bufferSize; i++) {
+                        const white = Math.random() * 2 - 1;
+                        if (i > 0) {
+                            output[i] = (white - output[i-1]) * 0.98;
+                        } else {
+                            output[i] = white;
+                        }
+                    }
+                    break;
+                case 'blue':
+                    // Blue noise emphasizes high frequencies but less than violet
+                    let lastBlue = 0;
+                    for (let i = 0; i < bufferSize; i++) {
+                        const white = Math.random() * 2 - 1;
+                        output[i] = 0.5 * (white - lastBlue);
+                        lastBlue = white;
+                    }
+                    break;
+                case 'grey':
+                    // Grey noise is perceptually flat across human hearing range
+                    let lastGrey = 0;
+                    for (let i = 0; i < bufferSize; i++) {
+                        const white = Math.random() * 2 - 1;
+                        output[i] = 0.35 * white + 0.65 * lastGrey;
+                        lastGrey = output[i];
+                    }
+                    break;
+            }
+
+            return noiseBuffer;
+        }
+
+        document.getElementById('soundSelect').addEventListener('change', () => {
+            if (noiseNode) {
+                noiseNode.stop();
+                noiseNode = null;
+                document.getElementById('playButton').click();
+            }
+        });
+
+        document.getElementById('playButton').addEventListener('click', () => {
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                gainNode = audioContext.createGain();
+                gainNode.connect(audioContext.destination);
+            }
+
+            if (noiseNode) noiseNode.stop();
+
+            const soundType = document.getElementById('soundSelect').value;
+            const noiseBuffer = createNoise(soundType);
+            
+            noiseNode = audioContext.createBufferSource();
+            noiseNode.buffer = noiseBuffer;
+            noiseNode.loop = true;
+            noiseNode.connect(gainNode);
+            
+            const volume = document.getElementById('volumeControl').value;
+            gainNode.gain.value = volume / 100;
+            
+            noiseNode.start();
+        });
+
+        document.getElementById('stopButton').addEventListener('click', () => {
+            if (noiseNode) {
+                noiseNode.stop();
+                noiseNode = null;
+            }
+        });
+
+        document.getElementById('volumeControl').addEventListener('input', (e) => {
+            if (gainNode) {
+                gainNode.gain.value = e.target.value / 100;
+            }
+        });
+    </script>
+</body>
+</html>
