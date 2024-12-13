@@ -26,11 +26,13 @@
         }
 
         .star {
-            position: fixed;
+            position: absolute;
             width: 2px;
             height: 2px;
             background: #ffffff;
             opacity: 0;
+            left: 0;
+            top: 0;
         }
 
         .controls-header {
@@ -156,7 +158,6 @@
     </style>
 </head>
 <body>
-    <div id="starsContainer"></div>
     <div class="controls-header">
         <div class="animation-controls">
             <input type="range" id="particleSlider" class="particle-slider" min="1" max="20" value="5">
@@ -189,23 +190,22 @@
 
         // Animation state
         let particles = [];
-        const starsContainer = document.getElementById('starsContainer');
         let isAnimated = true;
 
         function createParticle() {
             const particle = document.createElement('div');
             particle.className = 'star';
-            starsContainer.appendChild(particle);
+            document.body.appendChild(particle);
 
             const angle = Math.random() * Math.PI * 2;
-            const speed = 0.3 + Math.random() * 0.7; // Slower speed
+            const speed = 0.3 + Math.random() * 0.7;
             const size = 1 + Math.random() * 1.5;
 
             const particleObj = {
                 element: particle,
                 angle,
                 speed,
-                x: Math.random() * window.innerWidth,
+                x: -window.innerWidth/2 + Math.random() * window.innerWidth,
                 y: Math.random() * window.innerHeight,
                 size
             };
@@ -228,12 +228,12 @@
 
             // Reset position when particle goes off screen
             const margin = 20;
-            if (particle.x < -margin) particle.x = window.innerWidth + margin;
-            if (particle.x > window.innerWidth + margin) particle.x = -margin;
+            if (particle.x < -window.innerWidth/2 - margin) particle.x = window.innerWidth/2 + margin;
+            if (particle.x > window.innerWidth/2 + margin) particle.x = -window.innerWidth/2 - margin;
             if (particle.y < -margin) particle.y = window.innerHeight + margin;
             if (particle.y > window.innerHeight + margin) particle.y = -margin;
 
-            particle.element.style.transform = `translate(${particle.x}px, ${particle.y}px)`;
+            particle.element.style.transform = `translate(${particle.x + window.innerWidth/2}px, ${particle.y}px)`;
             particle.element.style.opacity = 1;
 
             requestAnimationFrame(() => animateParticle(particle));
